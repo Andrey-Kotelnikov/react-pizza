@@ -20,6 +20,7 @@ function Home() {
     const sortBy = currentSort.sortProperty.replace("-", "");
     const order = currentSort.sortProperty.includes("-") ? "asc" : "desc";
 
+    
     setIsLoading(true);
     fetch(
       `https://65fae2e83909a9a65b1bd70a.mockapi.io/items?${categoty}&sortBy=${sortBy}&order=${order}`

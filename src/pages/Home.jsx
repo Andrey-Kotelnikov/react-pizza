@@ -5,8 +5,11 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination/Pagination";
+import { SearchContext } from "../App";
 
-function Home({ searchValue }) {
+function Home() {
+  const { searchValue } = React.useContext(SearchContext);
+
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -32,10 +35,12 @@ function Home({ searchValue }) {
       .then((arr) => {
         setItems(arr);
         setIsLoading(false);
-      });
+      })
+      .catch((err) => console.log(err));
     window.scrollTo(0, 0);
   }, [categoryId, currentSort, searchValue, currentPage]);
 
+  
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(6)].map((_, index) => (

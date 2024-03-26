@@ -8,7 +8,7 @@
     align-items: center;
 
     a {
-			text-align: center;
+      text-align: center;
       width: 45px;
       height: 45px;
       padding: 10px;
@@ -17,20 +17,19 @@
       cursor: pointer;
       color: #fe5f1e;
 
-			&:hover {
-				background: #fe5f1e;
-				color: #fff;
-				
-			}
+      &:hover {
+        background: #fe5f1e;
+        color: #fff;
+      }
     }
   }
 
   :global {
     .selected {
-			a {
-				background: #fe5f1e;
-				color: #fff;
-			}
+      a {
+        background: #fe5f1e;
+        color: #fff;
+      }
     }
   }
 }

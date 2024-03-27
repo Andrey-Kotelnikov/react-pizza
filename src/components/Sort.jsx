@@ -16,7 +16,7 @@ function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
   const sortRef = React.useRef();
-  sortPopupRef = React.useRef();
+  const sortPopupRef = React.useRef();
 
   const [openPopup, setOpenPopup] = React.useState(false);
 
@@ -26,12 +26,15 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    document.body.addEventListener('click', (event) => {
-      console.log(event);
-      // if (event.target !== sortPopupRef.current) {
-      //   setOpenPopup(false);
-      // }
-    });
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setOpenPopup(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => document.body.removeEventListener('click', handleClickOutside);
   }, []);
 
   return (
@@ -47,7 +50,7 @@ function Sort() {
         <span onClick={() => setOpenPopup((prev) => (prev = !prev))}>{sort.name}</span>
       </div>
       {openPopup && (
-        <div className='sort__popup'>
+        <div className='sort__popup' ref={sortPopupRef}>
           <ul>
             {sortList.map((obj, i) => (
               <li

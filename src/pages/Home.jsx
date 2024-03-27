@@ -96,13 +96,13 @@ function Home() {
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
-    <div className="container">
-      <div className="content__top">
+    <div className='container'>
+      <div className='content__top'>
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{isLoading ? skeletons : pizzas}</div>
+      <h2 className='content__title'>Все пиццы</h2>
+      <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );

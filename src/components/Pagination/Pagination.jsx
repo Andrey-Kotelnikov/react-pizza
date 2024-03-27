@@ -7,9 +7,9 @@ function Pagination({ currentPage, onChangePage }) {
   return (
     <ReactPaginate
       className={styles.root}
-      breakLabel="..."
-      nextLabel=">"
-      previousLabel="<"
+      breakLabel='...'
+      nextLabel='>'
+      previousLabel='<'
       onPageChange={(event) => onChangePage(event.selected + 1)}
       pageRangeDisplayed={4}
       pageCount={3} // хардкор 3 страницы с бекенда

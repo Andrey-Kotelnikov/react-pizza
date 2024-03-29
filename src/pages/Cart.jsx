@@ -5,10 +5,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItem, deleteItem, clearItems } from '../redux/slices/cartSlise';
 
 import CartItem from '../components/CartItem';
+import CartEmpty from '../components/CartEmpty';
 
 function Cart() {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
+  const { items, totalPrice } = useSelector((state) => state.cart);
+
+  const totalCount = items.reduce((sum, obj) => sum + obj.count, 0);
+
+  const onClickClearCart = () => {
+    if (window.confirm('Очистить корзину?')) dispatch(clearItems());
+  };
+
+  if (!totalPrice) {
+    return <CartEmpty />;
+  }
 
   return (
     <div className='container container--cart'>
@@ -40,7 +51,7 @@ function Cart() {
             </svg>
             Корзина
           </h2>
-          <div className='cart__clear'>
+          <div className='cart__clear' onClick={onClickClearCart}>
             <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
               <path
                 d='M2.5 5H4.16667H17.5'
@@ -84,11 +95,11 @@ function Cart() {
           <div className='cart__bottom-details'>
             <span>
               {' '}
-              Всего пицц: <b>3 шт.</b>{' '}
+              Всего пицц: <b>{totalCount} шт.</b>{' '}
             </span>
             <span>
               {' '}
-              Сумма заказа: <b>900 ₽</b>{' '}
+              Сумма заказа: <b>{totalPrice} ₽</b>{' '}
             </span>
           </div>
           <div className='cart__bottom-buttons'>

@@ -3,8 +3,8 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzaSlice';
+import { filterSelector, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas, pizzasSelector } from '../redux/slices/pizzaSlice';
 
 import Categories from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
@@ -20,8 +20,8 @@ function Home() {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
-  const { items, status } = useSelector((state) => state.pizzas);
+  const { categoryId, sort, currentPage } = useSelector(filterSelector);
+  const { items, status } = useSelector(pizzasSelector);
 
   const { searchValue } = React.useContext(SearchContext);
 

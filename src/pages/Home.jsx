@@ -11,7 +11,6 @@ import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
-import { SearchContext } from '../App';
 
 function Home() {
   const navigate = useNavigate();

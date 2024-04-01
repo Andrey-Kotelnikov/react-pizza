@@ -1,6 +1,6 @@
 import React from 'react';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { filterSelector, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
@@ -84,7 +84,11 @@ function Home() {
 
   let pizzas = [];
   if (Array.isArray(items)) {
-    pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+    pizzas = items.map((obj) => (
+      <Link to={`/pizza/${obj.id}`} key={obj.id}>
+        <PizzaBlock {...obj} />
+      </Link>
+    ));
   }
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);

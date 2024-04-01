@@ -1,19 +1,32 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function FullPizza() {
+  const navigate = useNavigate();
   const { pizzaId } = useParams();
+
+  const [pizza, setPizza] = React.useState();
+
+  React.useEffect(() => {
+    axios
+      .get(`https://65fae2e83909a9a65b1bd70a.mockapi.io/items/${pizzaId}`)
+      .then((res) => setPizza(res.data))
+      .catch((err) => {
+        alert('Ошибка');
+        navigate('/');
+      });
+  }, []);
+
+  if (!pizza) {
+    return '';
+  }
 
   return (
     <div className='container'>
-      <img src='' alt='' />
-      <h2>{pizzaId}</h2>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptate earum laboriosam, ullam dicta quas.
-        Sunt possimus, tenetur voluptatum voluptas quas amet beatae cumque quo doloribus! Vero, commodi. Quasi,
-        pariatur.
-      </p>
-      <h4>250 ₽</h4>
+      <img src={pizza.imageUrl} alt='Пицца' />
+      <h2>{pizza.title}</h2>
+      <h4>{pizza.price} ₽</h4>
     </div>
   );
 }

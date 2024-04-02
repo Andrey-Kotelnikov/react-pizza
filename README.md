@@ -7,3 +7,4 @@ axios
 Корзина через redux
 Получени данных из бэкенда в redux через createAsyncThunk - вынесение бизнес-логики из ui в redux
 Страница пиццы, Outlet
+Типизация компонентов, пропсов, useRef, useState

@@ -2,11 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-function FullPizza() {
+const FullPizza: React.FC = (): JSX.Element => {
   const navigate = useNavigate();
   const { pizzaId } = useParams();
 
-  const [pizza, setPizza] = React.useState();
+  const [pizza, setPizza] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: number;
+  }>();
 
   React.useEffect(() => {
     axios
@@ -19,7 +23,7 @@ function FullPizza() {
   }, []);
 
   if (!pizza) {
-    return '';
+    return <></>;
   }
 
   return (

@@ -31,8 +31,10 @@ const Sort: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const current = sortRef.current;
+      const path = event.composedPath();
+      if (current && !path.includes(current)) {
         setOpenPopup(false);
       }
     };
@@ -71,5 +73,5 @@ const Sort: React.FC = () => {
       )}
     </div>
   );
-}
+};
 export default Sort;

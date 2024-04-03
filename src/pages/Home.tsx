@@ -1,9 +1,15 @@
 import React from 'react';
 import qs from 'qs';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { filterSelector, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import {
+  filterSelector,
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+  FilterSliceState,
+} from '../redux/slices/filterSlice';
 import { fetchPizzas, pizzasSelector } from '../redux/slices/pizzaSlice';
 
 import Categories from '../components/Categories';
@@ -11,10 +17,12 @@ import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Pagination';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -38,13 +46,12 @@ const Home: React.FC = () => {
     const search = searchValue ? 'search=' + searchValue : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
         category,
         search,
-        currentPage,
+        currentPage: String(currentPage),
       })
     );
   };
@@ -55,7 +62,7 @@ const Home: React.FC = () => {
       const params = qs.parse(window.location.search.substring(1));
       const sort = sortList.find((obj) => obj.sortProperty === params.sortProperty);
 
-      dispatch(setFilters({ ...params, sort }));
+      sort && dispatch(setFilters({ ...params, sort } as FilterSliceState));
       isSearch.current = true;
     }
   }, []);
@@ -85,11 +92,7 @@ const Home: React.FC = () => {
 
   let pizzas;
   if (Array.isArray(items)) {
-    pizzas = items.map((obj: any) => (
-      <Link to={`/pizza/${obj.id}`} key={obj.id}>
-        <PizzaBlock {...obj} />
-      </Link>
-    ));
+    pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
   }
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
@@ -112,6 +115,6 @@ const Home: React.FC = () => {
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
-}
+};
 
 export default Home;

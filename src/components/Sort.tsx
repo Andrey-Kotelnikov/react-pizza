@@ -1,20 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSort, sortSelector } from '../redux/slices/filterSlice';
+import { setSort, sortSelector, TSort, sortPropertyEnum } from '../redux/slices/filterSlice';
 
-type SortItem = {
-  name: string;
-  sortProperty: string;
-};
-
-export const sortList: SortItem[] = [
-  { name: 'популярности ▼', sortProperty: 'rating' },
-  { name: 'популярности ▲', sortProperty: '-rating' },
-  { name: 'цене ▼', sortProperty: 'price' },
-  { name: 'цене ▲', sortProperty: '-price' },
-  { name: 'алфавиту ▼', sortProperty: 'title' },
-  { name: 'алфавиту ▲', sortProperty: '-title' },
+export const sortList: TSort[] = [
+  { name: 'популярности ▼', sortProperty: sortPropertyEnum.RATING_DESC },
+  { name: 'популярности ▲', sortProperty: sortPropertyEnum.RATING_ASC },
+  { name: 'цене ▼', sortProperty: sortPropertyEnum.PRICE_DESC },
+  { name: 'цене ▲', sortProperty: sortPropertyEnum.PRICE_ASC },
+  { name: 'алфавиту ▼', sortProperty: sortPropertyEnum.TITLE_DESC },
+  { name: 'алфавиту ▲', sortProperty: sortPropertyEnum.TITLE_ASC },
 ];
 
 const Sort: React.FC = () => {
@@ -25,7 +20,7 @@ const Sort: React.FC = () => {
 
   const [openPopup, setOpenPopup] = React.useState(false);
 
-  const onClickSortItem = (obj: SortItem) => {
+  const onClickSortItem = (obj: TSort) => {
     dispatch(setSort(obj));
     setOpenPopup(false);
   };

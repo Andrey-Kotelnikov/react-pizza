@@ -9,3 +9,4 @@ axios
 Страница пиццы, Outlet
 Типизация компонентов, пропсов, useRef, useState
 Типизация onChange, onClick - event
+Типизация redux toolkit

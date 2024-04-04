@@ -12,3 +12,4 @@ axios
 Типизация redux toolkit
 Исправление перерисовки с помощью React.memo, useCallback
 Сохранение пицц в localStorage
+Оптимизация сборки: React Loadable, reexport

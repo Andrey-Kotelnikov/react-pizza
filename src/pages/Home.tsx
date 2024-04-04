@@ -10,11 +10,8 @@ import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { FilterSliceState } from '../redux/filter/types';
 
-import Categories from '../components/Categories';
-import Sort, { sortList } from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination/Pagination';
+import {Categories, Sort, PizzaBlock, Skeleton, Pagination} from '../components';
+import { sortList } from '../components/Sort';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

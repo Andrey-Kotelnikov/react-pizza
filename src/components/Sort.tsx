@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
-import { setSort, TSort, sortPropertyEnum } from '../redux/slices/filterSlice';
+import { TSort, sortPropertyEnum } from '../redux/filter/types';
+import { setSort } from '../redux/filter/slice';
 
 export const sortList: TSort[] = [
   { name: 'популярности ▼', sortProperty: sortPropertyEnum.RATING_DESC },

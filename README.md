@@ -11,3 +11,4 @@ axios
 Типизация onChange, onClick - event
 Типизация redux toolkit
 Исправление перерисовки с помощью React.memo, useCallback
+Сохранение пицц в localStorage

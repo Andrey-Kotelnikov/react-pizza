@@ -8,6 +8,6 @@ const NotFound: React.FC = () => {
       <NotFoundBlock />
     </div>
   );
-}
+};
 
 export default NotFound;

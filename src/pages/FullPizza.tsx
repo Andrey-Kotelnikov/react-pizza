@@ -33,6 +33,6 @@ const FullPizza: React.FC = (): JSX.Element => {
       <h4>{pizza.price} ₽</h4>
     </div>
   );
-}
+};
 
 export default FullPizza;

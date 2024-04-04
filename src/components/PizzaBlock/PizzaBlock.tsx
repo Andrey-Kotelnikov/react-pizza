@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { addItem, cartItemByIdSelector, TCartItem } from '../../redux/slices/cartSlise';
+import { cartItemByIdSelector } from '../../redux/cart/selectors';
+import { TCartItem } from '../../redux/cart/types';
+import { addItem } from '../../redux/cart/slice';
 
 const typesName = ['тонкое', 'традиционное'];
 

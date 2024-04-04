@@ -9,6 +9,7 @@ import { pizzasSelector } from '../redux/pizza/selectors';
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slice';
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { FilterSliceState } from '../redux/filter/types';
+import { TPizza } from '../redux/pizza/types';
 
 import {Categories, Sort, PizzaBlock, Skeleton, Pagination} from '../components';
 import { sortList } from '../components/Sort';
@@ -85,10 +86,10 @@ const Home: React.FC = () => {
 
   let pizzas;
   if (Array.isArray(items)) {
-    pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
+    pizzas = items.map((obj: TPizza) => <PizzaBlock key={obj.id} {...obj} />);
   }
 
-  const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+  const skeletons = [...new Array(8)].map((_, index) => <Skeleton key={index} />);
 
   return (
     <div className='container'>

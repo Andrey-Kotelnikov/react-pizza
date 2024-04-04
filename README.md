@@ -10,3 +10,4 @@ axios
 Типизация компонентов, пропсов, useRef, useState
 Типизация onChange, onClick - event
 Типизация redux toolkit
+Исправление перерисовки с помощью React.memo, useCallback

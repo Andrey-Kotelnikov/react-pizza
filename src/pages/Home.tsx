@@ -30,13 +30,13 @@ const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(filterSelector);
   const { items, status } = useSelector(pizzasSelector);
 
-  const onChangeCategory = (index: number) => {
+  const onChangeCategory = React.useCallback((index: number) => {
     dispatch(setCategoryId(index));
-  };
+  }, []);
 
-  const onChangePage = (num: number) => {
+  const onChangePage = React.useCallback((num: number) => {
     dispatch(setCurrentPage(num));
-  };
+  }, []);
 
   // Запрос пицц c api
   const getPizzas = () => {
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
     <div className='container'>
       <div className='content__top'>
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort />
+        <Sort value={sort} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       {status === 'error' ? (
